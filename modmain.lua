@@ -1,12 +1,4 @@
-Assets = {
-	Asset("ATLAS", "images/status_bgs.xml")
-}
-
 local Widget = GLOBAL.require('widgets/widget')
-local Image = GLOBAL.require('widgets/image')
-local Text = GLOBAL.require('widgets/text')
-local Badge = GLOBAL.require("widgets/badge")
-local Houndbadge = GLOBAL.require("widgets/houndbadge")
 
 local ENABLE_HOUND_ATTACK = GetModConfigData("enable_houndattack")
 local STRING_FORMAT = GetModConfigData("format")
@@ -25,24 +17,18 @@ local function attackString(timeToAttack)
 end
 
 local function HoundAttack(self)
-
-	self.attackDay = self:AddChild(Houndbadge("HoundAttack", self.owner))
 	
 	self.inst:ListenForEvent("cycleschanged",
 		function(inst)
 			local _timeToAttack = GLOBAL.TheWorld.components.hounded:GetTimeToAttack()
 			local timeToAttack = second2Day(_timeToAttack)
 			if timeToAttack <= 2 then
-				self.attackDay.num:SetString(attackString(timeToAttack))
+				GLOBAL.TheNet:Announce(attackString(timeToAttack))
 			end
-
-				print("Hound attack: " .. _timeToAttack)
+			print("Hound attack: " .. _timeToAttack)
 		end,
 		GLOBAL.TheWorld)
 
-	self.attackDay:SetPosition(60, 50, 0)
-	self.attackDay:SetScale(.6, .6, .6)
-	
 end
 if ENABLE_HOUND_ATTACK then
 	AddClassPostConstruct("widgets/controls", HoundAttack)
