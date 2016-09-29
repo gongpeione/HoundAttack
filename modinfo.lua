@@ -1,4 +1,4 @@
-name = "Hound Attack"
+name = "Hound Attack Dev"
 version = "0.0.2"
 author = "Geeku"
 description = "Tips to the hound attack"
@@ -39,6 +39,20 @@ configuration_options =
 					},
 
 		default = "complex",
+	
+	},
+	{
+		name = "days",
+		label = "Days in advance",
+		options =	{
+						{description = "4 Days", data = 4},
+						{description = "3 Days", data = 3},
+						{description = "2 Days", data = 2},
+						{description = "1 Day", data = 1},
+						{description = "Attack Day", data = 0}
+					},
+
+		default = 2,
 	
 	}
 }
