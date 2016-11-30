@@ -34,11 +34,20 @@ local function attackString(timeToAttack)
 	end
 end
 
-local function HoundAttack(self)
-	
-	self.inst:ListenForEvent("cycleschanged",
+local function HoundAttack(inst)
+
+	inst:ListenForEvent("cycleschanged",
 
 		function(inst)
+
+			if GLOBAL.TheWorld:HasTag("cave") then
+				return
+			end
+
+			if not GLOBAL.TheWorld.components.hounded then
+				return
+			end
+			
 			local _timeToAttack = GLOBAL.TheWorld.components.hounded:GetTimeToAttack()
 			local timeToAttack  = second2Day(_timeToAttack)
 
@@ -55,5 +64,7 @@ end
 
 
 if ENABLE_HOUND_ATTACK then
-	AddClassPostConstruct("widgets/controls", HoundAttack)
+	
+	AddPrefabPostInit("world", HoundAttack)
+	
 end

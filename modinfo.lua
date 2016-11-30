@@ -1,5 +1,5 @@
-name = "Hound Attack Dev"
-version = "0.0.2"
+name = "Hound Attack"
+version = "0.2.0"
 author = "Geeku"
 description = "Tips to the hound attack"
 forumthread = ""
@@ -45,6 +45,9 @@ configuration_options =
 		name = "days",
 		label = "Days in advance",
 		options =	{
+						{description = "7 Days", data = 7},
+						{description = "6 Days", data = 6},
+						{description = "5 Day", data = 5},
 						{description = "4 Days", data = 4},
 						{description = "3 Days", data = 3},
 						{description = "2 Days", data = 2},
